@@ -1,13 +1,18 @@
 local repo = "https://raw.githubusercontent.com/MicrosoftExcelHub/Script-Games/refs/heads/main/Games/"
-local Games = "https://raw.githubusercontent.com/MicrosoftExcelHub/GameList/refs/heads/main/Games.lua"
+
+-- Game-specific scripts table (PlaceId → Script URL)
+local Games = {
+    [127707120843339] = repo .. "MathMurder.lua",
+    -- Add more PlaceIds and scripts here if needed
+}
 
 local currentPlaceId = game.PlaceId
 local scriptUrl = Games[currentPlaceId]
 
 if scriptUrl then
-    -- Game-specific script
+    -- Load game-specific script
     loadstring(game:HttpGet(scriptUrl))()
 else
-    -- Fallback: universal script
-	    loadstring(game:HttpGet(repo .. "Uni.lua"))()
+    -- Load universal fallback script
+    loadstring(game:HttpGet(repo .. "Uni.lua"))()
 end
