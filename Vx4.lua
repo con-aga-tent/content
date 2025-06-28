@@ -1,37 +1,42 @@
--- Load Obsidian UI Library
+-- Wait for LocalPlayer (avoids nil error)
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer or Players.PlayerAdded:Wait()
+local userId = player.UserId
+
+-- Obsidian UI Library Loader
 local repo = "https://raw.githubusercontent.com/deividcomsono/Obsidian/main/"
 local Library = loadstring(game:HttpGet(repo .. "Library.lua"))()
 
--- Blocked User Table (UserId → Info)
+-- Blocked Users Table (UserId → {reason, duration, method})
 local blockedUsers = {
     [8528151423] = {
-        reason = "Į̸̧̡̛̛̛̬͔͚̳̼͇̹͉͎̻̻̥͔̝͉͉̯͕̺͓͉͓̜̤̰͎͚̩̪̘̭̞̖̤́̃̋̉͛̍͌͊̆̾̀̈̇̓̽̒̈̈̀̑̏̎́̄̌͊̎͌̈̍̓̋̓͑́͋̇̿́͛͘̕̕͘̚͜͝͠͠͝ ̷̢̢͎͍̼̮̺̭̺͙͈̲̦̮̼̗̱̪̯̠̭̦̘̋̿̄̀̽̉̄̌̆̏̓͆͂̊̎͆́͛̕̚̕͜͜͝͝ͅc̶̢̧̢̛̛̣͉̩̼̮̘̼͈͎͙͇͓͕̠̝̥͚͚̞̻̭̥̟̥͔̙̰̳̞̯͐͆̋̂̉͛̓͂̓̍̒̌̿̆̐̈́̽͂̈́͛̀̀̋̊̊̐͌̐̐̌͒̓̑͜͝͝͝͝͠a̷̧̧̧̛̬̥͎̲͓͉̝̪̬͇̦̦͖̹̠̦͉̯̖͍̥͚̭̯̞̳̘͖͕̠͗͐̽̄́̓͊́̌̈́͛͑̋͊̂̕̕͜͠͝n̴̻̥̱̝͓̖̲͉͚̤̪̜̖̲̻̝̮̥̙̹̜̜̤̪͎̬̠̻̞͎̗̘̥̙̎̃̏͒̈́̐̏̽̓̈́̊̔͗̍̿͛̅͌̔̅ ̴̧̨̧̲̳̹̝͖̳̥̥̦͎̤͍̤̠͕̗̻̲͍̪͕͓̪̤̭̣͇̟̘̋̅̈́̀̌̒̒̈͊̈͊̽͆̏́́̅͌̃̂̈̈̊̑̊̆̐͗̐̕͝͝ş̷̨̧̨̛̯͍̹͚͓͕͚̭̜̘̫̩͉͓̥̙̠̯͍͉̰̰̙̹͈̦͕͕̰̫̟͈͎͇͔̯̳͍̒̍͑̐͌̎͌̍̽̿̅͒͌̓͑̌̚̕͜͜͠͠ͅę̴̢̛̺͇̰̰̳͚̦͔̜̘͖̺̖̺͔̺̯̱̜̟̖̻͕̰̟̗̱̦̩̹͎̼̱͉̈̾̇͒̄̍͋̄̌͂͗̓̉̉̐̔̽̊̐̀̂̅̚̚̕̚͜͜͠͝ͅě̸̢̨̢̛̛͉̳̻̹̲̯̖̲̬̙̮̼̩̠̝̖͔̙̮̜̫̖̖̟̟̼̲͓̼͔̜͍̗͑̅͋̾̔̂͌̏͂͐̉̐̈̈́̌͋̀̌̕ͅ ̷̨͎̭̺̯̌͒͋̀̎̂̿̈͐̎͒͛̉͊̅̍͂̀̽̊̉̐̂̈̽͑̓̀́́̎̀̈́̅̒̚̚̚̕͝ý̷̧̢̼̺͙̦͕͉̳̗̳̮͚̖̏͋͋̐͒̔̅͐̋̒̎̈́̐̒̾̉̈͋͛͋̊͛́̔͗͊̄̇̚̕͘͜͠o̸̡̡̧̧̧̧̥̺͎̮̣̯̞͚̟̪̮̮̫̺̦͔̹̖͙̲̥͚͕̬͙̲͍̯̳̱̭̱̥̫̲͎͙͉̙̻̣͓͎̰̹̰̞͗͊̍͐̒̾̋͗́̐̍͗̄̐̑̕͜͝u̴̡̧̡͙̹̲͔̠͔̪̲̖̲͔̰̞̤̤͍̥͉̣͌̏̏͊̾̔̎̓̌̐̌̃͂̉̒̎͌̚͜͠ư̵̢̢̧̗͉̟͇̮̮̤̥̪̲̜̰̤̪̪̹͚͓̮̣̘̘̭̬̞͍̣̯̼̱͔̼͎̜͕̦̣̠̤̋̈̿͐̆́͋̂̈̕͝u̴̡̢͓̤̠̱̮̦̬̹͙͉͊̀͑̅̽̈́̅̊͑͂́̊͒͌̓̇͋͜͜͜͝ͅư̶̧̧̛̖̫̣̜̦̖͚͔̔̏̀̄́͋̔̒̊̌̂́̿͌͑̓̋̉̈̑͂͗̊͋̉̈́͋́̂͐͂͂̀̓̎̌̚̚̕͝͠ư̵͚̘̹͕̠̫̺̺̝̭̭̓̎̊̾̄͗̄̏̐̌̈̑̏̓̎̊͒̄̍̔́̅͐̅̉̐͌͛̆̇̅̚͜͝͠ư̶̧̨̨̛̹̺̤͈͙͇̝̼̹͙͔͉̼̗͙͍̞̳͓̦̹͇̭͇̯̯̥͙̇͊̿͆͗͒̾̐̔̾̏̿͛̈́͑͑͐̂̽̎̇̑̋̇́̒̒̚̚̕̕͝͝ͅ",
-        duration = "INF", -- or number in minutes
-        method = "shutdown" -- Options: notify, kick, shutdown
-    },
-    [] = {
-        reason = "Toxic behavior",
-        duration = 30,
+        reason = "Exploiting in private server",
+        duration = "INF",
         method = "shutdown"
     },
+    [123456789] = {
+        reason = "Toxic behavior",
+        duration = 30,
+        method = "kick"
+    },
     [987654321] = {
-        reason = "Bypass attempt",
+        reason = "Bypassing attempts",
         duration = "INF",
         method = "shutdown"
     }
 }
 
-local player = game.Players.LocalPlayer
-local userId = player.UserId
-
--- If user is blocked
+-- Block check
 if blockedUsers[userId] then
     local banData = blockedUsers[userId]
     local reason = banData.reason or "No reason provided"
     local duration = banData.duration or "INF"
     local method = (banData.method or "notify"):lower()
+
+    -- Format time
     local durationText = (duration == "INF") and "Indefinite Ban" or (tostring(duration) .. " minute(s)")
 
+    -- Format message
     local message = string.format(
         "Display Name: %s\nUsername: %s\nReason: %s\nBan Time: %s",
         player.DisplayName,
@@ -40,6 +45,7 @@ if blockedUsers[userId] then
         durationText
     )
 
+    -- Handle method
     if method == "notify" then
         Library:Notify({
             Title = "You're Blocked",
@@ -48,9 +54,9 @@ if blockedUsers[userId] then
             SoundId = 8578195318
         })
     elseif method == "kick" then
-        player:Kick("You're blocked from using this script:\n" .. message)
+        player:Kick("You're blocked from using this script:\n\n" .. message)
     elseif method == "shutdown" then
-        -- Shutdown client: error loop or freeze
+        -- Freeze the client by spinning infinite threads
         while true do
             task.spawn(function()
                 while true do end
@@ -58,20 +64,20 @@ if blockedUsers[userId] then
         end
     end
 
-    return -- Stop script execution
+    return -- Prevent further script execution
 end
 
--- Continue script for allowed users
+-- Allowed Users: Continue Script
 local scriptRepo = "https://raw.githubusercontent.com/MicrosoftExcelHub/Script-Games/main/Games/"
 
--- Game-specific scripts
+-- Game-specific scripts table
 local Games = {
     [127707120843339] = scriptRepo .. "MathMurder.lua",
     [12361295702] = scriptRepo .. "NCT.lua"
 }
 
+-- Load the correct script based on PlaceId
 local scriptUrl = Games[game.PlaceId]
-
 if scriptUrl then
     loadstring(game:HttpGet(scriptUrl))()
 else
