@@ -9,11 +9,6 @@ local Library = loadstring(game:HttpGet(repo .. "Library.lua"))()
 
 -- Blocked Users Table (UserId → {reason, duration, method})
 local blockedUsers = {
-  --[[ [8528151423] = {
-        reason = "Exploiting in private server",
-        duration = "INF",
-        method = "shutdown"
-    },]]
     [123456789] = {
         reason = "Toxic behavior",
         duration = 30,
@@ -24,7 +19,7 @@ local blockedUsers = {
         duration = "INF",
         method = "shutdown"
     }
-}
+} 
 
 -- Block check
 if blockedUsers[userId] then
