@@ -3,7 +3,7 @@ local repo = "https://raw.githubusercontent.com/MicrosoftExcelHub/Script-Games/r
 -- Game-specific scripts table (PlaceId → Script URL)
 local Games = {
     [127707120843339] = repo .. "MathMurder.lua",
-    -- Add more PlaceIds and scripts here if needed
+    [12361295702] = repo .. "NCT.lua
 }
 
 local currentPlaceId = game.PlaceId
