@@ -1,9 +1,9 @@
-local r = "https://raw.githubusercontent.com/con-aga-tent/Script-Games/main/Games/",
+local r = "https://raw.githubusercontent.com/con-aga-tent/Script-Games/main/Games/"
 
---[[local scriptUrl = Games[game.PlaceId
+local success, result = pcall(function()
+    return game:HttpGet(r .. "Uni.lua", true)
+end)
 
-if scriptUrl then
-    loadstring(game:HttpGet(scriptUrl))()
-else]]
-    loadstring(game:HttpGet(r .. "Uni.lua"))()
---end
+if success and result and result ~= "" then
+    loadstring(result)()
+end
